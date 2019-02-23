@@ -16,7 +16,6 @@
         <activity android:name=".MainActivity">
 
         </activity>
-
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -25,12 +24,19 @@
             </intent-filter>
 
         </activity>
+
         <activity
                 android:name=".ProjectLandingActivity"
                 android:label="@string/title_activity_project_landing"
                 android:theme="@style/AppTheme">
         </activity>
-        <activity android:name=".LiveViewActivity"/>
+        <activity android:name=".ActivityDemo"/>
+
+
+        <meta-data
+                android:name="com.google.android.maps.v2.API_KEY"
+                android:value="AIzaSyBGy7vrBgKU9wvecLLXHT4Pgt4le4sBfAs" />
+
 
     </application>
 

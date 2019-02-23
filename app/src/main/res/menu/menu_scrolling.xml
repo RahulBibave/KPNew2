@@ -10,6 +10,7 @@
 
 
     <item
+            android:visible="false"
         android:id="@+id/action_info"
         android:orderInCategory="200"
         android:title="info"

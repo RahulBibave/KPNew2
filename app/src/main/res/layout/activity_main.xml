@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-        android:id="@+id/rootLayout"
+<android.support.v4.widget.DrawerLayout
+        android:id="@+id/rootLayouts"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -9,7 +9,10 @@
         android:orientation="vertical"
         tools:context=".MainActivity">
 
-<LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+<LinearLayout
+        android:id="@+id/linear_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
 android:orientation="vertical">
 <LinearLayout
         android:layout_width="match_parent"
@@ -46,8 +49,20 @@ android:orientation="vertical">
                         android:textAllCaps="true"
                 />
 
+                <CheckBox
+                        android:visibility="gone"
+                        android:id="@+id/mapRadio"
+                        android:shadowColor="#de3535"
+                        android:text="Map"
+                        android:layout_marginRight="70dp"
+                        android:textColor="#FFF"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
 
                 <ImageView
+                        android:id="@+id/imgOffer"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:src="@drawable/offer_gif"
@@ -136,7 +151,10 @@ android:orientation="vertical">
 
     </LinearLayout>
     </LinearLayout>
-
+<FrameLayout
+        android:id="@+id/mainFrame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <android.support.v7.widget.RecyclerView
             android:id="@+id/recyler_main"
             android:layout_width="match_parent"
@@ -144,17 +162,41 @@ android:orientation="vertical">
     >
 
     </android.support.v7.widget.RecyclerView>
-</LinearLayout>
-
     <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_dialog_email"
             android:layout_gravity="bottom|end"
             app:elevation="6dp"
+            app:fabSize="normal"
+            app:maxImageSize="55dp"
+            android:src="@drawable/ai_chatbot"
             android:layout_marginBottom="10dp"
             android:layout_marginRight="10dp"
             app:pressedTranslationZ="12dp"/>
-
 </FrameLayout>
+
+</LinearLayout>
+
+
+
+
+
+
+    <android.support.design.widget.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:menu="@menu/activity_home_drawer"
+            android:layout_gravity="start"
+            android:background="#FFFFFF"
+            app:headerLayout="@layout/lay_navigation_drawer_header"
+            android:fitsSystemWindows="true"
+            android:theme="@style/AppTheme.NavigationView"
+            app:itemTextColor="#000000"
+            app:paddingEnd="0dp"
+            app:paddingStart="0dp"
+
+    />
+
+</android.support.v4.widget.DrawerLayout>
