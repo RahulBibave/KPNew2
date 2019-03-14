@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group
+
+        >
+
+        <item
+                android:icon="@drawable/ic_home"
+            android:id="@+id/nav_home"
+            android:title="Home"
+
+            />
+
+
+        <item
+            android:icon="@drawable/ic_rs"
+            android:id="@+id/nav_serach_byCat"
+            android:title="Offer"
+
+            />
+
+
+
+
+
+
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_map"
+
+            android:title="Map View"
+           />
+
+
+
+        <item
+                android:visible="false"
+            android:id="@+id/nav_lang"
+            android:title="About Us"
+            />
+
+
+        <item
+                android:icon="@drawable/ic_share"
+            android:id="@+id/nav_shareapp"
+            android:title="Share App"
+            />
+
+        <item
+            android:id="@+id/nav_logout"
+            android:title=""/>
+
+
+
+
+
+
+
+
+
+    </group>
+
+
+
+
+
+</menu>
