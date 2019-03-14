@@ -29,8 +29,8 @@
                 android:layout_width="62dp"
                 android:layout_height="62dp"
                 android:padding="5dp"
-                android:scaleType="center"
-                android:id="@+id/icon"
+                android:scaleType="fitXY"
+                android:id="@+id/icon1"
                 android:src="@drawable/kp_new"/>
         <LinearLayout
                 android:layout_marginLeft="5dp"
@@ -61,9 +61,32 @@
                     android:textColor="#000000"/>
         </LinearLayout>
     </LinearLayout>
+
+
+
+    <TextView
+            android:id="@+id/txtViewTital"
+            android:layout_below="@+id/lin_tital"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Project Photos"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+    />
+    <android.support.v7.widget.RecyclerView
+            android:layout_below="@+id/txtViewTital"
+            android:id="@+id/recyclergallary"
+            android:layout_width="match_parent"
+            android:layout_height="140dp">
+
+    </android.support.v7.widget.RecyclerView>
+
+
     <LinearLayout
             android:id="@+id/social"
-            android:layout_below="@+id/lin_tital"
+            android:layout_below="@+id/recyclergallary"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:paddingTop="10dp"
@@ -102,11 +125,12 @@
                 android:id="@+id/instagram"
                 android:src="@mipmap/ic_insta"/>
         <ImageView
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:id="@+id/sms"
-                android:src="@mipmap/sms"/>
+                android:id="@+id/linkedin"
+                android:src="@drawable/linkedin"/>
         <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -114,34 +138,98 @@
                 android:id="@+id/call"
                 android:src="@mipmap/viber"/>
     </LinearLayout>
-    <TextView
-
-            android:id="@+id/txtViewTital"
-            android:layout_below="@+id/social"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Project Photos"
-            android:textSize="20dp"
-            android:textStyle="bold"
+    <android.support.v7.widget.CardView
+            android:elevation="8dp"
+            app:cardCornerRadius="7dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-    />
-    <android.support.v7.widget.RecyclerView
-            android:layout_below="@+id/txtViewTital"
-            android:id="@+id/recyclergallary"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_below="@+id/social"
+            android:id="@+id/cardrera"
+            android:background="#f4df6363"
             android:layout_width="match_parent"
-            android:layout_height="140dp">
+            android:layout_height="wrap_content">
 
-    </android.support.v7.widget.RecyclerView>
 
+
+
+        <LinearLayout
+                android:id="@+id/linearRera"
+                android:layout_margin="2dp"
+                android:layout_below="@+id/recyclergallary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            <ImageView
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/category"/>
+            <LinearLayout
+                    android:padding="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical">
+
+                <RelativeLayout android:layout_width="match_parent"
+                                android:layout_height="wrap_content" android:baselineAligned="false">
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="RERA Registration No"
+                            android:id="@+id/reraTxt"
+                            android:textColor="#000000"
+                    />
+
+                    <ImageView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_eye"
+                            android:layout_marginRight="5dp"
+                            android:layout_alignParentRight="true"/>
+
+
+                </RelativeLayout>
+
+
+                <TextView
+                        android:id="@+id/txtReraNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+
+                        android:textColor="#000000"
+                        android:textSize="16dp"/>
+                <TextView
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="http://maharera.mahaonline.gov.in"
+
+                        android:textColor="#FF5722"
+                        android:textSize="16dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+
+
+
+
+    </android.support.v7.widget.CardView>
 <android.support.v7.widget.CardView
-        android:elevation="5dp"
+        android:elevation="8dp"
         app:cardCornerRadius="7dp"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
-        android:layout_below="@+id/recyclergallary"
+        android:layout_below="@+id/cardrera"
         android:id="@+id/cardCate"
         android:background="#f4df6363"
         android:layout_width="match_parent"
@@ -181,7 +269,7 @@
                     android:text=""
                     android:id="@+id/cat_titdesc"
                     android:textColor="#000000"
-                    android:textSize="18dp"/>
+                    android:textSize="16dp"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -195,7 +283,7 @@
 
 
 <android.support.v7.widget.CardView
-        android:elevation="5dp"
+        android:elevation="8dp"
         app:cardCornerRadius="7dp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
@@ -211,7 +299,7 @@
 
 
         <LinearLayout
-
+                android:id="@+id/linearFlatType"
                 android:layout_below="@+id/recyclergallary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -242,7 +330,7 @@
                         android:layout_height="wrap_content"
                         android:text="2 BHK "
                         android:textColor="#000000"
-                        android:textSize="18dp"/>
+                        android:textSize="16dp"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -257,7 +345,7 @@
 
 
 <android.support.v7.widget.CardView
-        android:elevation="5dp"
+        android:elevation="8dp"
         app:cardCornerRadius="7dp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
@@ -272,7 +360,7 @@
 
 
     <LinearLayout
-
+            android:id="@+id/linearArea"
             android:layout_below="@+id/recyclergallary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -293,18 +381,19 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Usable Area"
+                    android:text="Usable Area ( sq mtr )"
 
                     android:textColor="#000000"
                    />
             <TextView
+                    android:id="@+id/txtPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1 BHk-73.35 sq mt to 75.50 sq mt"
-                    android:singleLine="true"
+                    android:text=""
                     android:textColor="#000000"
-                    android:textSize="18dp"/>
+                    android:textSize="16dp"/>
             <TextView
+                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2 BHk-73.35 sq mt to 75.50 sq mt"
@@ -324,7 +413,7 @@
 
 
 <android.support.v7.widget.CardView
-            android:elevation="5dp"
+            android:elevation="8dp"
             app:cardCornerRadius="7dp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
@@ -339,11 +428,10 @@
 
 
         <LinearLayout
-
+                android:id="@+id/linearPrice"
                 android:layout_below="@+id/recyclergallary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="visible"
                 android:orientation="horizontal">
             <ImageView
                     android:layout_marginLeft="10dp"
@@ -365,17 +453,17 @@
                         android:textColor="#000000"
                        />
                 <TextView
+                        android:id="@+id/txtPriceFrom"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1 BHk - 73.35 Lac(s)+Taxes"
-
+                        android:text=""
                         android:textColor="#000000"
-                        android:textSize="18dp"/>
+                        android:textSize="16dp"/>
                 <TextView
+                        android:visibility="gone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="2 BHk - 95.44 Lac(s)+Taxes"
-
                         android:textColor="#000000"
                         android:textSize="18dp"/>
             </LinearLayout>
@@ -414,8 +502,8 @@
                           android:layout_height="match_parent">
                 <ImageView
                         android:layout_gravity="center"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:focusable="false"
                         android:clickable="false"
                         android:id="@+id/abtimage"
@@ -443,8 +531,8 @@
                           android:orientation="vertical" android:layout_width="match_parent"
                           android:layout_height="match_parent">
                 <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_gravity="center"
                         android:id="@+id/amenitimage"
                         android:src="@drawable/amenities"/>
@@ -470,17 +558,17 @@
                           android:orientation="vertical" android:layout_width="match_parent"
                           android:layout_height="match_parent">
                 <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_gravity="center"
                         android:id="@+id/photo"
-                        android:src="@drawable/gallery"/>
+                        android:src="@drawable/cost_sheet"/>
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:textStyle="bold"
-                        android:text="Photo Gallery"
+                        android:text="Cost Sheet"
                         android:paddingTop="5dp"
                         android:paddingBottom="5dp"
                         android:id="@+id/gallerytext"
@@ -502,8 +590,8 @@
                           android:orientation="vertical" android:layout_width="match_parent"
                           android:layout_height="match_parent">
                 <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_gravity="center"
                         android:id="@+id/floor"
                         android:src="@drawable/floor_plan"/>
@@ -590,8 +678,8 @@
                           android:orientation="vertical" android:layout_width="match_parent"
                           android:layout_height="match_parent">
                 <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_gravity="center"
                         android:id="@+id/locationmapimage"
                         android:src="@drawable/location"/>
@@ -599,7 +687,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Location Map"
+                        android:text="Location"
                         android:textStyle="bold"
                         android:clickable="false"
                         android:paddingTop="5dp"
@@ -619,8 +707,8 @@
                           android:orientation="vertical" android:layout_width="match_parent"
                           android:layout_height="match_parent">
                 <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:focusable="false"
                         android:layout_gravity="center"
                         android:clickable="false"
@@ -656,8 +744,8 @@
                           android:orientation="vertical" android:layout_width="match_parent"
                           android:layout_height="match_parent">
                 <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_gravity="center"
                         android:id="@+id/enquiryimage"
                         android:src="@drawable/enquiry"/>
@@ -682,8 +770,8 @@
                           android:orientation="vertical" android:layout_width="match_parent"
                           android:layout_height="match_parent">
                 <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_gravity="center"
                         android:id="@+id/web"
                         android:src="@drawable/website"/>
@@ -709,8 +797,8 @@
                           android:layout_height="match_parent">
 
                 <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_gravity="center"
                         android:id="@+id/amenitiesimage"
                         android:src="@drawable/contact"/>

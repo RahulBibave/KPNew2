@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "557849905947",
+    "firebase_url": "https://kpnew-2fcf5.firebaseio.com",
+    "project_id": "kpnew-2fcf5",
+    "storage_bucket": "kpnew-2fcf5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:557849905947:android:96ba90e2d095b277",
+        "android_client_info": {
+          "package_name": "velociter.kumar.property"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "557849905947-ra43t5h03v0g3i5spi0aphefv6rh3j6i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "velociter.kumar.property",
+            "certificate_hash": "673187b2de2d6758e5a209b64c982a8ff74baf79"
+          }
+        },
+        {
+          "client_id": "557849905947-pcl8vc1ui9i5kbg5es9hdgahdidaoirq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9jQkuGYzttqZMLag-BMD54mgwWD7Pgc0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "557849905947-pcl8vc1ui9i5kbg5es9hdgahdidaoirq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

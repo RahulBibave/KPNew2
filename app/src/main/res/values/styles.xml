@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="drawerArrowStyle">@style/WhiteDrawerIconStyle</item>
     </style>
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
@@ -23,9 +24,11 @@
 
     <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
         <item name="color">@android:color/white</item>
+
     </style>
 
     <style name="NavigationDrawerStyle">
+        <item name="color">@android:color/white</item>
         <item name="android:textSize">20sp</item><!-- text size in menu-->
         <item name="android:listPreferredItemHeightSmall">40dp</item><!-- item size in menu-->
         <item name="listPreferredItemHeightSmall">40dp</item><!-- item size in menu-->
@@ -44,5 +47,8 @@
         <item name="colorControlHighlight">@color/myRed</item>
     </style>
 
-
+    <style name="WhiteDrawerIconStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@android:color/white</item>
+    </style>
 </resources>

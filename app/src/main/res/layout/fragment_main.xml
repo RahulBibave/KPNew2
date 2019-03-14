@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+
+
+    <LinearLayout
+            android:id="@+id/lin_city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/colorPrimary">
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:weightSum="3">
+
+            <Button
+                    android:id="@+id/bucity_pune"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="PUNE"
+                    android:background="@drawable/city_oval_selected"
+                    android:layout_marginRight="10dp"
+
+            />
+            <Button
+                    android:id="@+id/bucity_mumbai"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Mumbai"
+                    android:background="@drawable/city_oval"
+
+            />
+            <Button
+                    android:id="@+id/bucity_bangalore"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="bangalore"
+                    android:background="@drawable/city_oval"
+            />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="15dp"
+        >
+
+            <android.support.v7.widget.RecyclerView
+
+                    android:id="@+id/recyclerCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyler_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+    >
+
+    </android.support.v7.widget.RecyclerView>
+
+
+</LinearLayout>

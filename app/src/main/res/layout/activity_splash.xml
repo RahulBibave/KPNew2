@@ -3,20 +3,12 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             android:background="#ffffff"
-             tools:context="kumarworld.rahul.kpnew.SplashActivity">
+             android:layout_gravity="center"
+             android:background="@drawable/kp_splash_screen_hd"
+             tools:context="velociter.kumar.property.SplashActivity">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
          TextureView, etc. -->
-    <TextView
-            android:id="@+id/fullscreen_content"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:keepScreenOn="true"
-            android:text="Splash Screen"
-            android:textColor="#000"
-            android:textSize="25sp" />
 
 </FrameLayout>
