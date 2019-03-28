@@ -122,7 +122,7 @@ public class SearchMap extends Fragment {
                             LatLong latLong=new LatLong(lattitude,longitude,project_name,id);
                             listitems.add(latLong);
                         }
-                        Log.e("ssssssssssssss",""+listitems.size());
+
 
                         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
                         mapFragment.getMapAsync(new OnMapReadyCallback() {

@@ -88,7 +88,7 @@ class FragmentMain :Fragment() {
         val req = object : StringRequest(Request.Method.POST,
             "http://app.kumarworld.com/api/all_projects",
             Response.Listener { response ->
-                Log.e("wqw",""+response)
+
 
                 //
                 var strResp = response.toString()
@@ -97,7 +97,7 @@ class FragmentMain :Fragment() {
                 if (status==200) {
 
                     val jsonArray: JSONArray = jsonObj.getJSONArray("data")
-                    Log.e("wqw", "" + jsonArray)
+
                     for (i in 0 until jsonArray.length()) {
                         var jsonInner: JSONObject = jsonArray.getJSONObject(i)
                         var name = jsonInner.get("project_name")
@@ -120,7 +120,7 @@ class FragmentMain :Fragment() {
                         val latlong=LatLong(lattitude ,longitude, name,id)
                         list.add(data)
 
-                        Log.e("wwsssw", "" + name)
+
 
                     }
                     var adpter = AdapterMain(context!!, list)
@@ -140,7 +140,7 @@ class FragmentMain :Fragment() {
             }
 
             override fun getBodyContentType(): String {
-                return "application/x-www-form-urlencoded";
+                return "application/x-www-form-urlencoded"
             }
         }
         req.retryPolicy = DefaultRetryPolicy(60000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT)

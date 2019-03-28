@@ -75,6 +75,15 @@
                     android:layout_marginBottom="10dp"
                     android:layout_marginRight="10dp"
                     app:pressedTranslationZ="12dp"/>
+
+
+            <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:visibility="gone"
+                    android:layout_gravity="center"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+            />
         </android.support.design.widget.CoordinatorLayout>
     </FrameLayout>
 </LinearLayout>

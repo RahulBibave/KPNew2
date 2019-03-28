@@ -59,7 +59,7 @@ class FragmentOffer :Fragment() {
                 if (status == 200) {
 
                     val jsonArray: JSONArray = jsonObj.getJSONArray("data")
-                    Log.e("wqwwwwwwwwwwwwwwww", "" + jsonArray)
+
                     for (i in 0 until jsonArray.length()) {
 
                         var jsonInner: JSONObject = jsonArray.getJSONObject(i)

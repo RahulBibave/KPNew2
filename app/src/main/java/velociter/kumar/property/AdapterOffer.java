@@ -34,7 +34,7 @@ public class AdapterOffer extends RecyclerView.Adapter<AdapterOffer.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         Offer offer=offerList.get(i);
-        Log.e("asasasasasasasasasas",""+offer.getOffer_image());
+
         Picasso.get().load(offer.getOffer_image()).into(viewHolder.imageView);
 
 

@@ -28,7 +28,7 @@ class AdapterFlorePlan(var context: Context,var listofpdf:ArrayList<String>) :Re
             p0.pd!!.setOnClickListener {
 
                 openNewTabWindow("http://docs.google.com/gview?embedded=true&url=" + listofpdf.get(p1))
-                Log.e("sasasasas",""+listofpdf.get(p1))
+
 
 
 

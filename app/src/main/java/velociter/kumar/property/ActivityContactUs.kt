@@ -29,7 +29,7 @@ class ActivityContactUs : AppCompatActivity() {
 
 
         tollfree.setOnClickListener {
-            if (checkPermission(Manifest.permission.CALL_PHONE)) {
+            /*if (checkPermission(Manifest.permission.CALL_PHONE)) {
                 // dial!!.isEnabled = true
                 makeACall(phoneNo)
             } else {
@@ -39,40 +39,20 @@ class ActivityContactUs : AppCompatActivity() {
                     arrayOf(Manifest.permission.CALL_PHONE),
                     ActivityContactUs.MAKE_CALL_PERMISSION_REQUEST_CODE
                 )
+            }*/
+            val intent = Intent().apply {
+                action = Intent.ACTION_DIAL
+                data = Uri.parse("tel:"+phoneNo)
             }
+            startActivity(intent)
         }
         img_arrowback.setOnClickListener {  onBackPressed()}
     }
 
 
-    private fun checkPermission(permission: String): Boolean {
-        return ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
-    }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        when (requestCode) {
-            MAKE_CALL_PERMISSION_REQUEST_CODE -> {
-                if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-                    Toast.makeText(this, "You can call the number by clicking on the button", Toast.LENGTH_SHORT).show()
-                }
-                return
-            }
-        }
-    }
 
-    companion object {
-        private val MAKE_CALL_PERMISSION_REQUEST_CODE = 1
-    }
-
-    fun makeACall(phoneNo: String) {
-        val phoneNumber = phoneNo
-        if (checkPermission(Manifest.permission.CALL_PHONE)) {
-            val dial = "tel:$phoneNumber"
-            startActivity(Intent(Intent.ACTION_CALL, Uri.parse(dial)))
-
-        }
-    }
 
 
 

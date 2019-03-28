@@ -37,6 +37,7 @@ import velociter.kumar.property.data.ProjectDetails
 import org.json.JSONArray
 import org.json.JSONObject
 import java.util.*
+import kotlin.collections.ArrayList
 
 class ProjectLandingActivity : BaseActivity() {
 
@@ -52,6 +53,7 @@ class ProjectLandingActivity : BaseActivity() {
         val animation = AnimationUtils.loadAnimation(this, R.anim.left_to_right)
         projectLandingMain.startAnimation(animation)
         val project_id=intent.getStringExtra("project_id")
+        progressBar.visibility=View.VISIBLE
         getProjectDetails(project_id)
 
 
@@ -174,14 +176,47 @@ class ProjectLandingActivity : BaseActivity() {
                 if (mProjectData.get(0).mCamera_feed.equals("")){
                     someDialog("Live View Not Available")
                 }else{
-                    val liveFragment=FragmentLiveView()
+                    var ip:String=""
+                    var pass:String=""
+                    var user:String=""
+                    try {
+                        var cam=mProjectData.get(0).mCamera_feed
+                        var arr=cam.split("=")
+                         ip =arr[0]
+                         user=arr[1]
+                         pass=arr[2]
+
+                        var live=Intent(this,CameraBaseActivity::class.java)
+                        if (!pass.isNullOrBlank() && !ip.isNullOrBlank() && !user.isNullOrBlank()){
+                            live.putExtra("ip",ip)
+                            live.putExtra("user",user)
+                            live.putExtra("pass", pass)
+                            startActivity(live)
+                        }else{
+                            someDialog("Live View Not Available")
+                        }
+
+                    }catch (e:IndexOutOfBoundsException){
+                        val liveFragment=FragmentLiveView()
+                        var bundle = Bundle()
+                        bundle.putString("liveview",mProjectData.get(0).mCamera_feed)
+                        liveFragment.arguments = bundle
+                        supportFragmentManager.beginTransaction()
+                            .replace(R.id.projectLandingMain, liveFragment,  liveFragment.javaClass.simpleName)
+                            .addToBackStack(null)
+                            .commit()
+                    }
+
+
+
+                  /*  val liveFragment=FragmentLiveView()
                     var bundle = Bundle()
                     bundle.putString("liveview",mProjectData.get(0).mCamera_feed)
                     liveFragment.arguments = bundle
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.projectLandingMain, liveFragment,  liveFragment.javaClass.simpleName)
                         .addToBackStack(null)
-                        .commit()
+                        .commit()*/
                 }
 
             }
@@ -221,12 +256,11 @@ class ProjectLandingActivity : BaseActivity() {
         val req = object : StringRequest(Request.Method.POST,
             "http://app.kumarworld.com/api/project_details",
             Response.Listener { response ->
-                Log.e("wqw",""+response)
 
+                progressBar.visibility=View.GONE
                 var strResp = response.toString()
                 val jsonObj: JSONObject = JSONObject(strResp)
                 val jsonArray: JSONArray = jsonObj.getJSONArray("data")
-                Log.e("ssssssssssssssss",""+jsonArray)
                 for (i in 0 until jsonArray.length()) {
                     var jsonInner: JSONObject = jsonArray.getJSONObject(i)
 
@@ -374,14 +408,14 @@ class ProjectLandingActivity : BaseActivity() {
                         y=y+mProjectData.get(0).mPriceArea.get(i).mFlatType+" - "+mProjectData.get(0).mPriceArea.get(i).mAreaFrom+"  to "+mProjectData.get(0).mPriceArea.get(i).mAreaTo+"  "+"\n"
                         var p = mProjectData.get(0).mPriceArea.get(i).mPriceFrom
                         var n=p.toInt()
-                        Log.e("aaaaaaaaaaaaaaa",""+n)
+
                         if ( mProjectData.get(0).mPriceArea.get(i).mPriceFrom.equals("00")){
                             linearPrice.visibility=View.GONE
 
                         }else{
                             if (n < 10000000) {
                                 val y = n / 1000 * 0.01
-                                Log.e("ddddddddddddddddddd",""+n)
+
                                 try{
                                     z=z+mProjectData.get(0).mPriceArea.get(i).mFlatType+" - "+y.toString().substring(0,5)+" Lac(s) " +mProjectData.get(0).mPriceArea.get(i).mPriceSuffix+"\n"
 
@@ -517,17 +551,11 @@ class ProjectLandingActivity : BaseActivity() {
 
                 call.setOnClickListener {
 
-                    if (checkPermission(Manifest.permission.CALL_PHONE)) {
-                        // dial!!.isEnabled = true
-                        makeACall(mProjectData.get(0).mPhone)
-                    } else {
-                        // dial!!.isEnabled = false
-                        ActivityCompat.requestPermissions(
-                            this,
-                            arrayOf(Manifest.permission.CALL_PHONE),
-                            ProjectLandingActivity.MAKE_CALL_PERMISSION_REQUEST_CODE
-                        )
+                    val intent = Intent().apply {
+                        action = Intent.ACTION_DIAL
+                        data = Uri.parse("tel:"+ mProjectData.get(0).mPhone)
                     }
+                    startActivity(intent)
 
 
 
@@ -554,19 +582,13 @@ class ProjectLandingActivity : BaseActivity() {
 
 
 
-
-
-
-
-
-
-
                 }, Response.ErrorListener { e ->
-
+                progressBar.visibility=View.GONE
                 Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show()
             }) {
             public override fun getParams(): Map<String, String> {
                 val params = HashMap<String, String>()
+                progressBar.visibility=View.VISIBLE
                 params.put("project_id", proId)
                 return params
             }
@@ -650,19 +672,7 @@ class ProjectLandingActivity : BaseActivity() {
         private val MAKE_CALL_PERMISSION_REQUEST_CODE = 1
     }
 
-    fun makeACall(phoneNo:String){
-        val phoneNumber =phoneNo
-        if (checkPermission(Manifest.permission.CALL_PHONE)) {
-            val dial = "tel:$phoneNumber"
-            startActivity(Intent(Intent.ACTION_CALL, Uri.parse(dial)))
 
-    }
-
-
-
-
-
-}
     fun someDialog(message:String){
         AlertDialog.Builder(this).apply {
             setTitle("Kumar Properties")

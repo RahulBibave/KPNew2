@@ -30,7 +30,7 @@ class AdapterGallery (var context:Context , var galleryImages:ArrayList<String>)
             val mBuilder = AlertDialog.Builder(context)
             val mView = LayoutInflater.from(context).inflate(R.layout.dialog_custom_layout, null)
             val photoView = mView.findViewById<PhotoView>(R.id.imageView)
-            Log.e("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq",""+galleryImages.get(p1))
+
             Picasso.get().load(galleryImages.get(p1)).into(photoView)
 
 
