@@ -3,9 +3,10 @@
     <color name="colorPrimary">#373c49</color>
     <color name="colorPrimaryDark">#2c303a</color>
     <color name="colorAccent">#ed7d2f</color>
-
+    <color name="white">#FFFFFF</color>
     <color name="gray">#bebdbd</color>
     <color name="kpcolor">#ed7d27</color>
     <color name="myPeach">#f8a055</color>
     <color name="myRed">#ff5f70</color>
+    <color name="myColor">#373c49</color>
 </resources>

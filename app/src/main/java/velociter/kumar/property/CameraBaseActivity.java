@@ -69,11 +69,11 @@ public class CameraBaseActivity extends Activity implements Callback{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        CrashUtil crashUtil = CrashUtil.getInstance();
+       // CrashUtil crashUtil = CrashUtil.getInstance();
 
        // HCNetSDK hcNetSDK = HCNetSDK.getInstance();//**
 
-        crashUtil.init(this);
+       // crashUtil.init(this);
       //  app = (AppData) getApplication();
         setContentView(R.layout.main);
         btnBack=findViewById(R.id.btnBack);
@@ -143,7 +143,7 @@ public class CameraBaseActivity extends Activity implements Callback{
                         public void run() {
                             if (isShow)
                                 startSinglePreview();
-                           Toast.makeText(CameraBaseActivity.this, "please Wait", Toast.LENGTH_LONG).show();
+                          // Toast.makeText(CameraBaseActivity.this, "please Wait", Toast.LENGTH_LONG).show();
 
                         }
                     });

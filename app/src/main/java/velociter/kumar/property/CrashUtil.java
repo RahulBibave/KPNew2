@@ -145,7 +145,8 @@ public class CrashUtil implements Thread.UncaughtExceptionHandler
 //        }
     }
 
-    /** 保存错误信息到文件中 */
+    /**
+     Save error message to file */
     private String saveCrashInfoToFile (Throwable ex)
     {
         StringBuffer sb = new StringBuffer();

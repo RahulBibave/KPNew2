@@ -12,13 +12,13 @@ android {
         applicationId "velociter.kumar.property"
         minSdkVersion 14
         targetSdkVersion 28
-        versionCode 17
-        versionName "2.0"
+        versionCode 19
+        versionName "2.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
-        ndk {
+        ndk.abiFilters 'armeabi-v7a','arm64-v8a','x86','x86_64','armeabi'
+        /*ndk {
             abiFilters "armeabi"//只支持32位
-        }
+        }*/
     }
     buildTypes {
         release {
@@ -50,5 +50,6 @@ dependencies {
     implementation files('libs/HCNetSDK.jar')
     implementation files('libs/jna.jar')
     implementation files('libs/PlayerSDK.jar')
+    implementation 'com.github.delight-im:Android-AdvancedWebView:v3.0.0'
 }
 com.google.gms.googleservices.GoogleServicesPlugin.config.disableVersionCheck = true

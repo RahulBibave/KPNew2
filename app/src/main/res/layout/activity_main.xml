@@ -156,6 +156,7 @@ android:orientation="vertical">
 
     </LinearLayout>
     </LinearLayout>
+
 <FrameLayout
         android:id="@+id/mainFrame"
         android:layout_width="match_parent"

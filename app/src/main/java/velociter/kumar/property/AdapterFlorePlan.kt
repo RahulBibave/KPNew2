@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 
 import kotlinx.android.synthetic.main.lay_pdf_view.view.*
 
@@ -25,6 +26,8 @@ class AdapterFlorePlan(var context: Context,var listofpdf:ArrayList<String>) :Re
 
     override fun onBindViewHolder(p0: ViewHolderFlorePlan, p1: Int) {
             p0.bindItems()
+            var nu=p1+1
+            p0.number!!.text="("+nu.toString()+")"
             p0.pd!!.setOnClickListener {
 
                 openNewTabWindow("http://docs.google.com/gview?embedded=true&url=" + listofpdf.get(p1))
@@ -38,8 +41,10 @@ class AdapterFlorePlan(var context: Context,var listofpdf:ArrayList<String>) :Re
 
     class ViewHolderFlorePlan(itemView: View): RecyclerView.ViewHolder(itemView) {
         var pd: ImageView? = null
+        var number:TextView?=null
         fun bindItems() {
             pd=itemView.pdfView
+            number=itemView.txtNumber
 
         }
     }

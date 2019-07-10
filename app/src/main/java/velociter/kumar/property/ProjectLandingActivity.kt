@@ -29,6 +29,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.squareup.picasso.Picasso
+import com.sun.jna.IntegerType
 
 import kotlinx.android.synthetic.main.activity_project_landing.*
 import kotlinx.android.synthetic.main.demo_layout.*
@@ -38,6 +39,8 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
+import kotlin.collections.HashSet
 
 class ProjectLandingActivity : BaseActivity() {
 
@@ -58,7 +61,8 @@ class ProjectLandingActivity : BaseActivity() {
 
 
 
-       //
+
+
 
 
 
@@ -84,17 +88,19 @@ class ProjectLandingActivity : BaseActivity() {
          val buSelected= view
          val intent = Intent(this,ActivityDemo::class.java) //not application context
 
+         if (mProjectData.size==1){
 
-        when(buSelected.id){
+    when (buSelected.id) {
 
 
 
-            R.id.about-> {
 
-                intent.putExtra("input","about project")
-                intent.putExtra("aboutData",mProjectData.get(0).mProDesc)
-                startActivity(intent)
-                /*val aboutFragment=FragmentAboutProject()
+        R.id.about -> {
+
+            intent.putExtra("input", "about project")
+            intent.putExtra("aboutData", mProjectData.get(0).mProDesc)
+            startActivity(intent)
+            /*val aboutFragment=FragmentAboutProject()
                 var bundle = Bundle()
                 bundle.putString("about",mProjectData.get(0).mProDesc)
                 aboutFragment.arguments = bundle
@@ -104,112 +110,123 @@ class ProjectLandingActivity : BaseActivity() {
                 .commit()*/
 
 
+        }
 
-            }
 
-
-            R.id.amenities-> {
-                intent.putExtra("input","amenities")
-                intent.putExtra("amenities1",mProjectData.get(0).getmCommAmi())
-                intent.putExtra("amenities2",mProjectData.get(0).getmSpeAmi())
-                startActivity(intent)
-              /*  amenities.isClickable=true
+        R.id.amenities -> {
+            intent.putExtra("input", "amenities")
+            intent.putExtra("amenities1", mProjectData.get(0).getmCommAmi())
+            intent.putExtra("amenities2", mProjectData.get(0).getmSpeAmi())
+            startActivity(intent)
+            /*  amenities.isClickable=true
                 supportFragmentManager.beginTransaction()
                     .add(R.id.projectLandingMain, FragmentAminites(),  FragmentAminites().javaClass.simpleName)
                     .addToBackStack(null)
                     .commit()*/
+        }
+
+
+        R.id.gallery -> {
+            if (mProjectData.get(0).mCostSheet.size == 1) {
+                openNewTabWindow(
+                    "http://docs.google.com/gview?embedded=true&url=" + mProjectData.get(0).mCostSheet.get(
+                        0
+                    )
+                )
+            } else {
+                var intentFloorPlan = Intent(this, ActivityFloorPlan::class.java)
+                intentFloorPlan.putExtra("floorplan", mProjectData.get(0).mCostSheet)
+                intentFloorPlan.putExtra("tital", "Cost Sheet")
+                startActivity(intentFloorPlan)
             }
 
 
-            R.id.gallery-> {
-                if (mProjectData.get(0).mCostSheet.size==1){
-                    openNewTabWindow("http://docs.google.com/gview?embedded=true&url=" + mProjectData.get(0).mCostSheet.get(0))
-                }else{
-                    var intentFloorPlan= Intent(this,ActivityFloorPlan::class.java)
-                    intentFloorPlan.putExtra("floorplan",mProjectData.get(0).mCostSheet)
-                    intentFloorPlan.putExtra("tital","Cost Sheet")
-                    startActivity(intentFloorPlan)
-                }
-
-
-               /* supportFragmentManager.beginTransaction()
+            /* supportFragmentManager.beginTransaction()
                     .add(R.id.projectLandingMain, SearchMap(),  SearchMap().javaClass.simpleName)
                     .addToBackStack(null)
                     .commit()*/
+        }
+
+        R.id.floorplan -> {
+            if (mProjectData.get(0).mFloorPlan.size == 1) {
+                openNewTabWindow(
+                    "http://docs.google.com/gview?embedded=true&url=" + mProjectData.get(0).mFloorPlan.get(
+                        0
+                    )
+                )
+            } else {
+                var intentFloorPlan = Intent(this, ActivityFloorPlan::class.java)
+                intentFloorPlan.putExtra("floorplan", mProjectData.get(0).mFloorPlan)
+                intentFloorPlan.putExtra("tital", "Floor Plan")
+                startActivity(intentFloorPlan)
             }
 
-            R.id.floorplan-> {
-                if (mProjectData.get(0).mFloorPlan.size==1){
-                    openNewTabWindow("http://docs.google.com/gview?embedded=true&url=" + mProjectData.get(0).mFloorPlan.get(0))
-                }
-                else{
-                    var intentFloorPlan= Intent(this,ActivityFloorPlan::class.java)
-                    intentFloorPlan.putExtra("floorplan",mProjectData.get(0).mFloorPlan)
-                    intentFloorPlan.putExtra("tital","Floor Plan")
-                    startActivity(intentFloorPlan)
-                }
-
-                /*supportFragmentManager.beginTransaction()
+            /*supportFragmentManager.beginTransaction()
                     .replace(R.id.projectLandingMain, SearchMap(),  SearchMap().javaClass.simpleName)
                     .addToBackStack(null)
                     .commit()*/
+        }
+
+        R.id.locationmap -> {
+
+            var uri = String.format(
+                Locale.ENGLISH,
+                "http://maps.google.com/maps?daddr=%f,%f (%s)",
+                mProjectData.get(0).mProLat.toDouble(),
+                mProjectData.get(0).mProLong.toDouble(),
+                mProjectData.get(0).mProName
+            );
+            var location = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
+            location.setPackage("com.google.android.apps.maps")
+            try {
+                startActivity(location)
+            } catch (ex: ActivityNotFoundException) {
+                try {
+                    var unrestrictedIntent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
+                    startActivity(unrestrictedIntent)
+                } catch (innerEx: ActivityNotFoundException) {
+                    Toast.makeText(this, "Please install a maps application", Toast.LENGTH_LONG).show()
+                }
             }
+        }
 
-            R.id.locationmap-> {
+        R.id.liveview -> {
+            if (mProjectData.get(0).mCamera_feed.equals("")) {
+                someDialog("Live View Not Available")
+            } else {
+                var ip: String = ""
+                var pass: String = ""
+                var user: String = ""
+                try {
+                    var cam = mProjectData.get(0).mCamera_feed
+                    var arr = cam.split("=")
+                    ip = arr[0]
+                    user = arr[1]
+                    pass = arr[2]
 
-                var uri = String.format(Locale.ENGLISH, "http://maps.google.com/maps?daddr=%f,%f (%s)", mProjectData.get(0).mProLat.toDouble(), mProjectData.get(0).mProLong.toDouble(), mProjectData.get(0).mProName);
-                 var location = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
-                location.setPackage("com.google.android.apps.maps")
-                    try {
-                        startActivity(location)
-                    } catch (ex:ActivityNotFoundException ) {
-                        try {
-                            var unrestrictedIntent =  Intent(Intent.ACTION_VIEW, Uri.parse(uri))
-                            startActivity(unrestrictedIntent)
-                        } catch (innerEx:ActivityNotFoundException ) {
-                            Toast.makeText(this, "Please install a maps application", Toast.LENGTH_LONG).show()
-                        }
-                    }
-            }
-
-            R.id.liveview-> {
-                if (mProjectData.get(0).mCamera_feed.equals("")){
-                    someDialog("Live View Not Available")
-                }else{
-                    var ip:String=""
-                    var pass:String=""
-                    var user:String=""
-                    try {
-                        var cam=mProjectData.get(0).mCamera_feed
-                        var arr=cam.split("=")
-                         ip =arr[0]
-                         user=arr[1]
-                         pass=arr[2]
-
-                        var live=Intent(this,CameraBaseActivity::class.java)
-                        if (!pass.isNullOrBlank() && !ip.isNullOrBlank() && !user.isNullOrBlank()){
-                            live.putExtra("ip",ip)
-                            live.putExtra("user",user)
-                            live.putExtra("pass", pass)
-                            startActivity(live)
-                        }else{
-                            someDialog("Live View Not Available")
-                        }
-
-                    }catch (e:IndexOutOfBoundsException){
-                        val liveFragment=FragmentLiveView()
-                        var bundle = Bundle()
-                        bundle.putString("liveview",mProjectData.get(0).mCamera_feed)
-                        liveFragment.arguments = bundle
-                        supportFragmentManager.beginTransaction()
-                            .replace(R.id.projectLandingMain, liveFragment,  liveFragment.javaClass.simpleName)
-                            .addToBackStack(null)
-                            .commit()
+                    var live = Intent(this, CameraBaseActivity::class.java)
+                    if (!pass.isNullOrBlank() && !ip.isNullOrBlank() && !user.isNullOrBlank()) {
+                        live.putExtra("ip", ip)
+                        live.putExtra("user", user)
+                        live.putExtra("pass", pass)
+                        startActivity(live)
+                    } else {
+                        someDialog("Live View Not Available")
                     }
 
+                } catch (e: IndexOutOfBoundsException) {
+                    val liveFragment = FragmentLiveView()
+                    var bundle = Bundle()
+                    bundle.putString("liveview", mProjectData.get(0).mCamera_feed)
+                    liveFragment.arguments = bundle
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.projectLandingMain, liveFragment, liveFragment.javaClass.simpleName)
+                        .addToBackStack(null)
+                        .commit()
+                }
 
 
-                  /*  val liveFragment=FragmentLiveView()
+                /*  val liveFragment=FragmentLiveView()
                     var bundle = Bundle()
                     bundle.putString("liveview",mProjectData.get(0).mCamera_feed)
                     liveFragment.arguments = bundle
@@ -217,30 +234,30 @@ class ProjectLandingActivity : BaseActivity() {
                         .replace(R.id.projectLandingMain, liveFragment,  liveFragment.javaClass.simpleName)
                         .addToBackStack(null)
                         .commit()*/
-                }
-
             }
-
-            R.id.enquiry-> {
-                var enquiryintent=Intent(this,ActivityEnquiry::class.java)
-                enquiryintent.putExtra("proID",mProjectData.get(0).mProID)
-                startActivity(enquiryintent)
-            }
-
-            R.id.website-> {
-                openNewTabWindow(mProjectData.get(0).getmWebsite())
-            }
-
-            R.id.contactus-> {
-                var contactintent=Intent(this,ActivityContactUs::class.java)
-                contactintent.putExtra("whatsapp",mProjectData.get(0).mWhatsapp)
-                contactintent.putExtra("cellno",mProjectData.get(0).mPhone)
-                startActivity(contactintent)
-                }
-
 
         }
 
+        R.id.enquiry -> {
+            var enquiryintent = Intent(this, ActivityEnquiry::class.java)
+            enquiryintent.putExtra("proID", mProjectData.get(0).mProID)
+            startActivity(enquiryintent)
+        }
+
+        R.id.website -> {
+            openNewTabWindow(mProjectData.get(0).getmWebsite())
+        }
+
+        R.id.contactus -> {
+            var contactintent = Intent(this, ActivityContactUs::class.java)
+            contactintent.putExtra("whatsapp", mProjectData.get(0).mWhatsapp)
+            contactintent.putExtra("cellno", mProjectData.get(0).mPhone)
+            startActivity(contactintent)
+        }
+
+
+    }
+    }
 
 
     }
@@ -256,7 +273,7 @@ class ProjectLandingActivity : BaseActivity() {
         val req = object : StringRequest(Request.Method.POST,
             "http://app.kumarworld.com/api/project_details",
             Response.Listener { response ->
-
+                rootLayouts.isClickable=true
                 progressBar.visibility=View.GONE
                 var strResp = response.toString()
                 val jsonObj: JSONObject = JSONObject(strResp)
@@ -391,26 +408,42 @@ class ProjectLandingActivity : BaseActivity() {
                     linearFlatType.visibility=View.GONE
                     linearArea.visibility=View.GONE
                     linearPrice.visibility=View.GONE
+                    cardContactUs.visibility=View.VISIBLE
                 }
                 else{
                     //Flat type
+                    val bhk: ArrayList<String> = ArrayList()
                     var x:String=""
                     for (i in 0 until mProjectData.get(0).mPriceArea.size){
-                        x=x+mProjectData.get(0).mPriceArea.get(i).mFlatType+","
+                        bhk.add(mProjectData.get(0).mPriceArea.get(i).mFlatType)
+                        //x=x+","+mProjectData.get(0).mPriceArea.get(i).mFlatType
                     }
+                    bhk.sort()
+                    val set = HashSet<String>(bhk)
+                    bhk.clear()
+                    bhk.addAll(set)
+                    Log.e("aaaaaaaaaaaaaaaaaaaaaaaaa",""+bhk.toString())
+                    for (i in 0 until bhk.size){
+                        x=x+bhk.get(i)+","
+                    }
+
+
                     txtFlatType.text=x
 
                     //Area
 
                     var y:String=""
                     var z:String=""
+                    val area: ArrayList<String> = ArrayList()
                     for (i in 0 until mProjectData.get(0).mPriceArea.size){
-                        y=y+mProjectData.get(0).mPriceArea.get(i).mFlatType+" - "+mProjectData.get(0).mPriceArea.get(i).mAreaFrom+"  to "+mProjectData.get(0).mPriceArea.get(i).mAreaTo+"  "+"\n"
+                        area.add(mProjectData.get(0).mPriceArea.get(i).mFlatType+" - "+mProjectData.get(0).mPriceArea.get(i).mAreaFrom+"  to "+mProjectData.get(0).mPriceArea.get(i).mAreaTo+"  "+"\n")
+                        //y=y+mProjectData.get(0).mPriceArea.get(i).mFlatType+" - "+mProjectData.get(0).mPriceArea.get(i).mAreaFrom+"  to "+mProjectData.get(0).mPriceArea.get(i).mAreaTo+"  "+"\n"
                         var p = mProjectData.get(0).mPriceArea.get(i).mPriceFrom
                         var n=p.toInt()
 
                         if ( mProjectData.get(0).mPriceArea.get(i).mPriceFrom.equals("00")){
                             linearPrice.visibility=View.GONE
+                            cardContactUs.visibility=View.VISIBLE
 
                         }else{
                             if (n < 10000000) {
@@ -438,6 +471,12 @@ class ProjectLandingActivity : BaseActivity() {
                             txtPriceFrom.text=z
                         }
 
+                    }
+                    val set2=HashSet<String>(area)
+                    area.clear()
+                    area.addAll(set2)
+                    for (i in 0 until area.size){
+                        y=y+area[i]
                     }
                     txtPrice.text=y
 
@@ -587,6 +626,7 @@ class ProjectLandingActivity : BaseActivity() {
                 Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show()
             }) {
             public override fun getParams(): Map<String, String> {
+
                 val params = HashMap<String, String>()
                 progressBar.visibility=View.VISIBLE
                 params.put("project_id", proId)

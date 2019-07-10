@@ -26,7 +26,7 @@
                     android:transitionName="profile"
                     android:id="@+id/projectImage"
                     android:scaleType="fitXY"
-                    android:src="@drawable/demooo"
+
             />
             <ProgressBar
                     android:id="@+id/loadings"
@@ -48,7 +48,7 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="MegaPolis"
+                    android:text=""
                     android:transitionName="profile"
                     android:id="@+id/projectname"
                     android:singleLine="true"
@@ -62,7 +62,7 @@
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Hinjewadi,Pune"
+                        android:text=""
                         android:textColor="#ffffff"
                         android:layout_weight="0.8"
                         android:ellipsize="end"

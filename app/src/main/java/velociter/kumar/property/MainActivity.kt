@@ -60,6 +60,8 @@ class MainActivity : BaseActivity(){
         }
 
 
+
+
         var recyclerViewCity:RecyclerView=recyclerCity
         recyclerViewCity.layoutManager=LinearLayoutManager(this,LinearLayout.HORIZONTAL,false)
 
